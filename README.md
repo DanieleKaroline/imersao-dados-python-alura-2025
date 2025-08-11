@@ -26,6 +26,8 @@ Projeto desenvolvido durante a **Imersão Dados com Python 2025**, aplicando con
 
 ---
 
+## 🔗 [Acesse o link do Streamlit](https://imersao-dados-python-alura-2025-danielek.streamlit.app/)
+
 ## 🔗 Outras atividades
 Também foram realizadas atividades extras durante a imersão:
 
