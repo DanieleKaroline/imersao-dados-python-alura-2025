@@ -10,6 +10,15 @@ st.set_page_config(
     layout="wide",
 )
 
+st.markdown("""
+    <style>
+    [data-testid="stSidebar"] .stMultiSelect .st-bx {
+        background-color: #8e44ad !important;
+        color: #fff !important;
+    }
+    </style>
+""", unsafe_allow_html=True)
+
 # --- Carregamento dos dados ---
 df = pd.read_csv("https://raw.githubusercontent.com/vqrca/dashboard_salarios_dados/refs/heads/main/dados-imersao-final.csv")
 
@@ -78,8 +87,10 @@ with col_graf1:
             y='cargo',
             orientation='h',
             title="Top 10 cargos por salário médio",
-            labels={'usd': 'Média salarial anual (USD)', 'cargo': ''}
-        )
+            labels={'usd': 'Média salarial anual (USD)', 'cargo': ''},
+            color='usd',
+            color_continuous_scale='agsunset'  
+            )
         grafico_cargos.update_layout(title_x=0.1, yaxis={'categoryorder':'total ascending'})
         st.plotly_chart(grafico_cargos, use_container_width=True)
     else:
@@ -92,7 +103,8 @@ with col_graf2:
             x='usd',
             nbins=30,
             title="Distribuição de salários anuais",
-            labels={'usd': 'Faixa salarial (USD)', 'count': ''}
+            labels={'usd': 'Faixa salarial (USD)', 'count': ''},
+            color_discrete_sequence=px.colors.sequential.Agsunset
         )
         grafico_hist.update_layout(title_x=0.1)
         st.plotly_chart(grafico_hist, use_container_width=True)
@@ -110,7 +122,8 @@ with col_graf3:
             names='tipo_trabalho',
             values='quantidade',
             title='Proporção dos tipos de trabalho',
-            hole=0.5  
+            hole=0.5,
+            color_discrete_sequence=px.colors.sequential.Agsunset  
         )
         grafico_remoto.update_traces(textinfo='percent+label')
         grafico_remoto.update_layout(title_x=0.1)
